@@ -6,6 +6,7 @@ var tallyClicks = [];
 var imageNames = [];
 var surveyLength;
 var resultsButton = document.getElementById('displayResults');
+
 // Constructor object with name and path images
 function images(name, filePath) {
   this.name = name;
@@ -100,6 +101,8 @@ var productRank = {
       console.log('max number clicks reached');
       resultsButton.hidden = false;
       collectTallys();
+      // localStorage.retrieveData = JSON.stringify(imageArray);
+      localStorage.getData = JSON.stringify(imageArray);
       return;
     }
   },
@@ -144,15 +147,9 @@ var data = {
   labels: imageNames,
   datasets: [
     {
-      label: 'CHARTS',
-      backgroundColor: [
-        'rgba(255, 99, 132, 0.2)',
-        'rgba(54, 162, 235, 0.2)',
-        'rgba(255, 206, 86, 0.2)',
-        'rgba(75, 192, 192, 0.2)',
-        'rgba(153, 102, 255, 0.2)',
-        'rgba(255, 159, 64, 0.2)'
-      ],
+      label: 'Number of Time Clicked',
+      backgroundColor: '#00ff00;.',
+
       borderColor: [
         'rgba(255,99,132,1)',
         'rgba(54, 162, 235, 1)',
@@ -160,6 +157,7 @@ var data = {
         'rgba(75, 192, 192, 1)',
         'rgba(153, 102, 255, 1)',
         'rgba(255, 159, 64, 1)'
+
       ],
       borderWidth: 1,
       data: tallyClicks,
@@ -174,3 +172,14 @@ function drawChart() {
     data: data,
   });
 };
+
+function LocalStorage() {
+  if(localStorage.getData) {
+    console.log('The local storage exist');
+    imageArray = JSON.parse(localStorage.getData);
+  } else {
+    console.log('The local storage is empty.');
+  }
+}
+
+LocalStorage();
