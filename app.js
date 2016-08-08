@@ -101,7 +101,6 @@ var productRank = {
       console.log('max number clicks reached');
       resultsButton.hidden = false;
       collectTallys();
-      // localStorage.retrieveData = JSON.stringify(imageArray);
       localStorage.getData = JSON.stringify(imageArray);
       return;
     }
@@ -129,9 +128,30 @@ var productRank = {
     productRank.displayImages();
   }
 };
+// function localStorage() {
+//   if(localStorage.getData) {
+//     imageArray = JSON.parse(localStorage.getData);
+//     for (var i = 0; i < imageArray.length; i++) {
+//       imageName.push(imageArray.length[i].imageNames);
+//     }
+//   }
+//   else{
+//     localStorage.
+//   }
+// }
 
 productRank.imagesElement.addEventListener('click', productRank.handleClick);
 productRank.displayImages();
+
+(function localStorage() {
+  if(localStorage.getData) {
+    console.log('The local storage exist');
+    imageArray = JSON.parse(localStorage.getData);
+  } else {
+    console.log('The local storage is empty.');
+    localStorage.setItem('imageArray', JSON.stringify(imageArray));
+  }
+})();
 
 var handleResults = function() {
   drawChart();
@@ -173,13 +193,6 @@ function drawChart() {
   });
 };
 
-function LocalStorage() {
-  if(localStorage.getData) {
-    console.log('The local storage exist');
-    imageArray = JSON.parse(localStorage.getData);
-  } else {
-    console.log('The local storage is empty.');
-  }
-}
+function dog () {
 
-LocalStorage();
+}
